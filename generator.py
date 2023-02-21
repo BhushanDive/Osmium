@@ -1,21 +1,32 @@
-import random
 import string
+import random
 
-length = input("Length of your password")
+length = input("Length of Password")
 length = int(length)
 
-# print(randnum)
-
-def gen_func():
+def gen_pass(numbers: bool, uppercase: bool, lowercase: bool, specialcharacters: bool, length: int) -> str:
+    # Define the character sets to use
     letters = string.ascii_letters
-    lower_case = string.ascii_lowercase
-    upper_case = string.ascii_uppercase
     digits = string.digits
-    special_charac = string.punctuation
-    randnum = ''.join(random.choices(letters+lower_case+upper_case+digits+special_charac,k=length))
+    special_chars = string.punctuation
 
-def gen_pass(numbers:bool, uppercase:bool, lowercase:bool, specialcharacters:bool, length:int) ->string:
+    # Initialize the list of character sets to use
+    char_sets = []
+    if numbers:
+        char_sets.append(digits)
+    if uppercase:
+        char_sets.append(letters.upper())
+    if lowercase:
+        char_sets.append(letters.lower())
+    if specialcharacters:
+        char_sets.append(special_chars)
+
+    # Generate the password using the selected character sets
+    password = ''.join(random.choices(''.join(char_sets), k=length))
+    return password
+
+
     
 
-password = gen_pass(False, length)
+password = gen_pass(False,True,True,True, length)
 print(password)
