@@ -1,9 +1,6 @@
 import string
 import random
 
-length = input("Length of Password")
-length = int(length)
-
 def gen_pass(numbers: bool, uppercase: bool, lowercase: bool, specialcharacters: bool, length: int) -> str:
     # Define the character sets to use
     letters = string.ascii_letters
@@ -24,9 +21,3 @@ def gen_pass(numbers: bool, uppercase: bool, lowercase: bool, specialcharacters:
     # Generate the password using the selected character sets
     password = ''.join(random.choices(''.join(char_sets), k=length))
     return password
-
-
-    
-
-password = gen_pass(False,True,True,True, length)
-print(password)
